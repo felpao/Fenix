@@ -35,33 +35,33 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         @auth
-                        <li class="nav-item">
-                            <a href="{{ route('usuario.index') }}" class="nav-link">Usuários</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('setor.index') }}" class="nav-link">Setor</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('insumo.index') }}" class="nav-link">Insumos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('saidainsumo.index') }}" class="nav-link">Saida de Insumos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('compra.index') }}" class="nav-link">Compras</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('desccompras.index') }}" class="nav-link">Descrição das Compras</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('equipamento.index') }}" class="nav-link">Equipamentos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('saidaequipamento.index') }}" class="nav-link">Saida de Equipamento</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('fornecedor.index') }}" class="nav-link">Fornecedor</a>
-                        </li>
+                            <li class="nav-item">
+                                <a href="{{ route('usuario.index') }}" class="nav-link">Usuários</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('setor.index') }}" class="nav-link">Setor</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('insumo.index') }}" class="nav-link">Insumos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('saidainsumo.index') }}" class="nav-link">Saida de Insumos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('compra.index') }}" class="nav-link">Compras</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('desccompras.index') }}" class="nav-link">Descrição das Compras</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('equipamento.index') }}" class="nav-link">Equipamentos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('saidaequipamento.index') }}" class="nav-link">Saida de Equipamento</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('fornecedor.index') }}" class="nav-link">Fornecedor</a>
+                            </li>
 
                         @endauth
                     </ul>
@@ -70,35 +70,36 @@
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
                         @guest
-                        @if (Route::has('login'))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                        </li>
-                        @endif
+                            @if (Route::has('login'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                </li>
+                            @endif
 
-                        @if (Route::has('register'))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                        </li>
-                        @endif
+                            @if (Route::has('register'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                </li>
+                            @endif
                         @else
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->name }}
-                            </a>
-
-                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }}
                                 </a>
 
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form>
-                            </div>
-                        </li>
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
                         @endguest
                     </ul>
                 </div>
@@ -108,6 +109,40 @@
         <main class="py-4">
             @yield('content')
         </main>
+
+
+    </div>
+    <div class="animated-word">
+        <div class="letra">F</div>
+        <div class="letra">E</div>
+        <div class="letra">N</div>
+        <div class="letra">I</div>
+        <div class="letra">X</div>
+
+        <style>
+            .animated-word {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 300%;
+            }
+
+            .letra {
+                transition: 0.4s;
+                transform: translatex(0);
+                cursor: grab;
+                color: #000000;
+            }
+
+            .letra:hover {
+                transform: translatey(-1rem);
+                background: -webkit-linear-gradient(120deg, hsl(19, 90%, 52%), hsl(56, 100%, 50%));
+                -webkit-background-clip: text;
+                -webkit-text-fill-color:transparent;
+            }
+        </style>
+
+
 
 
     </div>
