@@ -67,8 +67,11 @@ class CompraController extends Controller
     }
     public function showReport(){
     $compras = Compras::get();
-    $imagem = public_path('uploads\compras');
+    // dd('tese');
+    $imagem = public_path('uploads\compras\abdner.png');
+
     $compra = pathinfo($imagem, PATHINFO_EXTENSION);
+
     $data = file_get_contents($imagem);
     $base64 = base64_encode($imagem);
     $logo = 'data:image/' . $compra . ';base64' . $base64;

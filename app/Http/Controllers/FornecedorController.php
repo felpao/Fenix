@@ -66,7 +66,7 @@ class FornecedorController extends Controller
 
     public function showReport(){
         $fornecedores = Fornecedor::get();
-        $imagem = public_path('uploads\fornecedores');
+        $imagem = public_path('uploads\fornecedores\abdner.png');
         $fornecedor = pathinfo($imagem, PATHINFO_EXTENSION);
         $data = file_get_contents($imagem);
         $base64 = base64_encode($imagem);

@@ -68,7 +68,7 @@
                     </div>
                 </div>
                 <div class="card-footer">
-                    <a href="{{ url('compras/report') }}" target="_blank"
+                    <a href="{{ url('fornecedores/report') }}" target="_blank"
                      class="btn btn-sm btn-warning">
                         Relatório
                     </a>

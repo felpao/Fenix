@@ -20,7 +20,7 @@
                     <table class="table table-sm table-hover table-bordered">
                         <thead>
                             <tr>
-                                <th>Código</th>
+                                <th>id</th>
                                 <th>Nome</th>
                                 <th>Data da Compra</th>
                                 <th>Unidade Unitaria</th>

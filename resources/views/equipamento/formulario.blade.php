@@ -43,9 +43,7 @@
                         {!! Form::input('text', 'titulo', null, ['class'=>'form-control','placeholder'=>'titulo', 'required', 'maxlenght'=>50, 'autofocus']) !!}
                         {!! Form::label('icone', 'Icone') !!}
                         {!! Form::file('icone',
-                        ['class'=>'form-control  btn-sm']) !!}
-                        {!! Form::submit('Salvar',['class' => 'float-end btn btn-primary mt-3']) !!}
-                        {!! Form::close() !!}
+                        ['class'=>'form-control  btn-sm']) !!}}
 
                         @if (Route::is('equipamento.show'))
                             {!! Form::model($equipamento, ['method' => 'PATCH', 'url' => route('equipamento.update', $equipamento->id)]) !!}

@@ -21,12 +21,12 @@
         </tr>
         @forelse ($compras as $compra)
         <tr>
-            <td>{{ $compras->id }}</td>
-            <td>{{ $compras->nome }}</td>
-            <td>{{ $compras->data_compra }}</td>
-            <td>{{ $compras->uni_unitaria }}</td>
-            <td>{{ $compras->quantidade }}</td>
-            <td>{{ $compras->valor }}</td>
+            <td>{{ $compra->id }}</td>
+            <td>{{ $compra->nome }}</td>
+            <td>{{ $compra->data_compra }}</td>
+            <td>{{ $compra->uni_unitaria }}</td>
+            <td>{{ $compra->quantidade }}</td>
+            <td>{{ $compra->valor }}</td>
             <td><img src="{{ $logo }}" alt="">
           <img src="{{ public_path('/uploads/compras/') }}" alt="">
         </td>

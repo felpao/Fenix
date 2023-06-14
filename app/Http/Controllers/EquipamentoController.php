@@ -70,7 +70,7 @@ class EquipamentoController extends Controller
 
     public function showReport(){
         $equipamentos = Equipamento::get();
-        $imagem = public_path('uploads\equipamentos');
+        $imagem = public_path('uploads\equipamentos\abdner.png');
         $equipamento = pathinfo($imagem, PATHINFO_EXTENSION);
         $data = file_get_contents($imagem);
         $base64 = base64_encode($imagem);

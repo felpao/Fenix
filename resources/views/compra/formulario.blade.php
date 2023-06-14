@@ -44,8 +44,6 @@
                             {!! Form::label('icone', 'Icone') !!}
                             {!! Form::file('icone',
                             ['class'=>'form-control  btn-sm']) !!}
-                            {!! Form::submit('Salvar',['class' => 'float-end btn btn-primary mt-3']) !!}
-                            {!! Form::close() !!}
 
                         @if (Route::is('compra.show'))
                             {!! Form::model($compra, ['method' => 'PATCH', 'url' => route('compra.update', $compra->id)]) !!}
