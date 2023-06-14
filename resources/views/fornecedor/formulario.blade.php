@@ -22,6 +22,32 @@
                                 {{ Session::get('menssagem_erro') }}
                             </div>
                         @endif
+                        @if(Route::is('fornecedores.show'))
+                        {!! Form::model($fornecedor,
+                                        ['method'=>'PATCH',
+                                        'files'=>'True',
+                                        'url'=>'fornecedores/'.$fornecedor->id]) !!}
+                        <div class="text-center">
+                            <img
+                            src="{{ url('/') }}/uploads/fornecedores/{{ $fornecedor->icone }}"
+                            alt="{{ $fornecedor->titulo }}"
+                            title="{{ $fornecedor->titulo }}"
+                            class="img-thumbnail"
+                            width="150"/>
+                        </div>
+                    @else
+                    {!! Form::open(['method'=>'POST','files'=>'True', 'url'=>'fornecedor']) !!}
+                    @endif
+                    {!! Form::open(['method'=>'POST', 'url'=>'fornecedor']) !!}
+                        {!! Form::label('titulo', 'Titulo') !!}
+                        {!! Form::input('text', 'titulo', null, ['class'=>'form-control','placeholder'=>'titulo', 'required', 'maxlenght'=>50, 'autofocus']) !!}
+                        {!! Form::label('icone', 'Icone') !!}
+                        {!! Form::file('icone',
+                        ['class'=>'form-control  btn-sm']) !!}
+                        {!! Form::submit('Salvar',['class' => 'float-end btn btn-primary mt-3']) !!}
+                        {!! Form::close() !!}
+
+
                         @if (Route::is('fornecedor.show'))
                             {!! Form::model($fornecedor, ['method' => 'PATCH', 'url' => route('fornecedor.update', $fornecedor->id)]) !!}
                         @else

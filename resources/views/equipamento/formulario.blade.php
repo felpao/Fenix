@@ -22,6 +22,31 @@
                                 {{ Session::get('menssagem_erro') }}
                             </div>
                         @endif
+                        @if(Route::is('equipamentos.show'))
+                        {!! Form::model($equipamento,
+                                        ['method'=>'PATCH',
+                                        'files'=>'True',
+                                        'url'=>'equipamentos/'.$equipamento->id]) !!}
+                        <div class="text-center">
+                            <img
+                            src="{{ url('/') }}/uploads/equipamentos/{{ $equipamento->icone }}"
+                            alt="{{ $equipamento->titulo }}"
+                            title="{{ $equipamento->titulo }}"
+                            class="img-thumbnail"
+                            width="150"/>
+                        </div>
+                    @else
+                    {!! Form::open(['method'=>'POST','files'=>'True', 'url'=>'equipamento']) !!}
+                    @endif
+                    {!! Form::open(['method'=>'POST', 'url'=>'equipamento']) !!}
+                        {!! Form::label('titulo', 'Titulo') !!}
+                        {!! Form::input('text', 'titulo', null, ['class'=>'form-control','placeholder'=>'titulo', 'required', 'maxlenght'=>50, 'autofocus']) !!}
+                        {!! Form::label('icone', 'Icone') !!}
+                        {!! Form::file('icone',
+                        ['class'=>'form-control  btn-sm']) !!}
+                        {!! Form::submit('Salvar',['class' => 'float-end btn btn-primary mt-3']) !!}
+                        {!! Form::close() !!}
+
                         @if (Route::is('equipamento.show'))
                             {!! Form::model($equipamento, ['method' => 'PATCH', 'url' => route('equipamento.update', $equipamento->id)]) !!}
                         @else

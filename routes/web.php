@@ -31,17 +31,14 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-//Route::get('/tipo', [TiposController::class, 'listar'])->name('listar.tipos');
-//Route::get('/tipo/create', [TiposController::class, 'create']);
-//Route::get('/tipo/report', [TiposController::class, 'showReport']);
-//Route::get('/tipo/{tipo_id}', [TiposController::class, 'show'])->name('tipo.show');
-//Route::post('tipo', [TiposController::class, 'store']);
-//Route::patch('/tipo/{tipo_id}', [TiposController::class, 'update']);
-//Route::delete('/tipo/{tipo_id}', [TiposController::class, 'deletar']);
+Route::get('/compras/report', [CompraController::class, 'showReport']);
+Route::get('/fornecedores/report', [FornecedorController::class, 'showReport']);
+Route::get('/equipamentos/report', [EquipamentoController::class, 'showReport']);
+Route::get('/compras/{compra_id}', [CompraController::class, 'show'])->name('compras.show');
+Route::get('/equipamentos/{compra_id}', [EquipamentoController::class, 'show'])->name('equipamentos.show');
+Route::get('/fornecedores/{compra_id}', [FornecedorController::class, 'show'])->name('fornecedores.show');
 
 
-//Route::get('reserva/reserva/{id}', [ReservasController::class, 'devolucao'])->name('reserva.devolucao');
-//Route::resource('local', LocaisController::class);
 Route::resource('setor', SetorController::class);
 Route::resource('compra', CompraController::class);
 Route::resource('usuario', UsuarioController::class);

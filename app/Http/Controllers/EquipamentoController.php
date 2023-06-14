@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Equipamento;
 use App\Models\Insumo;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Redirect;
@@ -65,6 +66,28 @@ class EquipamentoController extends Controller
             'Equipamento removido com sucesso');
         return Redirect::to('equipamento');
 
+    }
+
+    public function showReport(){
+        $equipamentos = Equipamento::get();
+        $imagem = public_path('uploads\equipamentos');
+        $equipamento = pathinfo($imagem, PATHINFO_EXTENSION);
+        $data = file_get_contents($imagem);
+        $base64 = base64_encode($imagem);
+        $logo = 'data:image/' . $equipamentos . ';base64' . $base64;
+
+        //$logo = base64_encode(file_get_contents(public_path('/uploads/compras/wp8357470.jpg')));
+        $pdf = Pdf::loadView('reports.equipamentos', compact('equipamentos', 'logo'));
+
+        $pdf->setPaper('a4', 'landscape')
+        ->setOptions(['dpi'=>150, 'defaultFont'=>'sans-serif'])
+        ->setEncryption('123');
+
+
+        return $pdf
+        ->download('relatorio.pdf');
+        //->save(public_path('/arquivos/relatorio.pdf'));
+        //->stream('relatorio.pdf');
     }
 
 }

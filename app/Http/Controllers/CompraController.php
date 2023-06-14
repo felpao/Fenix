@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Compra;
 use App\Models\Compras;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Redirect;
@@ -64,5 +65,26 @@ class CompraController extends Controller
         return Redirect::to('compra');
 
     }
+    public function showReport(){
+    $compras = Compras::get();
+    $imagem = public_path('uploads\compras');
+    $compra = pathinfo($imagem, PATHINFO_EXTENSION);
+    $data = file_get_contents($imagem);
+    $base64 = base64_encode($imagem);
+    $logo = 'data:image/' . $compra . ';base64' . $base64;
+
+    //$logo = base64_encode(file_get_contents(public_path('/uploads/compras/wp8357470.jpg')));
+    $pdf = Pdf::loadView('reports.compras', compact('compras', 'logo'));
+
+    $pdf->setPaper('a4', 'landscape')
+    ->setOptions(['dpi'=>150, 'defaultFont'=>'sans-serif'])
+    ->setEncryption('123');
+
+
+    return $pdf
+    ->download('relatorio.pdf');
+    //->save(public_path('/arquivos/relatorio.pdf'));
+    //->stream('relatorio.pdf');
+}
 
 }

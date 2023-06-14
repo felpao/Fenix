@@ -22,6 +22,31 @@
                                 {{ Session::get('menssagem_erro') }}
                             </div>
                         @endif
+                        @if(Route::is('compras.show'))
+                            {!! Form::model($compra,
+                                            ['method'=>'PATCH',
+                                            'files'=>'True',
+                                            'url'=>'compras/'.$compra->id]) !!}
+                            <div class="text-center">
+                                <img
+                                src="{{ url('/') }}/uploads/compras/{{ $compra->icone }}"
+                                alt="{{ $compra->titulo }}"
+                                title="{{ $compra->titulo }}"
+                                class="img-thumbnail"
+                                width="150"/>
+                            </div>
+                        @else
+                        {!! Form::open(['method'=>'POST','files'=>'True', 'url'=>'compra']) !!}
+                        @endif
+                        {!! Form::open(['method'=>'POST', 'url'=>'compra']) !!}
+                            {!! Form::label('titulo', 'Titulo') !!}
+                            {!! Form::input('text', 'titulo', null, ['class'=>'form-control','placeholder'=>'titulo', 'required', 'maxlenght'=>50, 'autofocus']) !!}
+                            {!! Form::label('icone', 'Icone') !!}
+                            {!! Form::file('icone',
+                            ['class'=>'form-control  btn-sm']) !!}
+                            {!! Form::submit('Salvar',['class' => 'float-end btn btn-primary mt-3']) !!}
+                            {!! Form::close() !!}
+
                         @if (Route::is('compra.show'))
                             {!! Form::model($compra, ['method' => 'PATCH', 'url' => route('compra.update', $compra->id)]) !!}
                         @else

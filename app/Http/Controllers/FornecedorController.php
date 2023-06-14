@@ -64,4 +64,26 @@ class FornecedorController extends Controller
 
     }
 
+    public function showReport(){
+        $fornecedores = Fornecedor::get();
+        $imagem = public_path('uploads\fornecedores');
+        $fornecedor = pathinfo($imagem, PATHINFO_EXTENSION);
+        $data = file_get_contents($imagem);
+        $base64 = base64_encode($imagem);
+        $logo = 'data:image/' . $fornecedor . ';base64' . $base64;
+
+        //$logo = base64_encode(file_get_contents(public_path('/uploads/fornecedores/wp8357470.jpg')));
+        $pdf = Pdf::loadView('reports.fornecedores', compact('fornecedores', 'logo'));
+
+        $pdf->setPaper('a4', 'landscape')
+        ->setOptions(['dpi'=>150, 'defaultFont'=>'sans-serif'])
+        ->setEncryption('123');
+
+
+        return $pdf
+        ->download('relatorio.pdf');
+        //->save(public_path('/arquivos/relatorio.pdf'));
+        //->stream('relatorio.pdf');
+    }
+
 }
