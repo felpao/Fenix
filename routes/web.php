@@ -48,3 +48,4 @@ Route::resource('equipamento', EquipamentoController::class);
 Route::resource('insumo', InsumoController::class);
 Route::resource('fornecedor', FornecedorController::class);
 Route::resource('saidainsumo', SaidainsumoController::class);
+
