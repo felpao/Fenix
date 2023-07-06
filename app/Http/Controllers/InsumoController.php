@@ -47,7 +47,7 @@ class InsumoController extends Controller
         }else{
             $request->session()->flash('mensagem_erro',"Deu erro!");
         }
-        return Redirect::to('insumo/'.$insumo->id);
+        return Redirect::to('insumo/');
     }
 
     public function show($id){

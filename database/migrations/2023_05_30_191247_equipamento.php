@@ -15,6 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('nome', 50);
             $table->string('descricao', 150);
+            $table->unsignedBigInteger('fornecedor_id');
+            $table->foreign('fornecedor_id')->references('id')->on('fornecedores');
+            $table->timestamps();
         });
     }
 

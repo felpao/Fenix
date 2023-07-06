@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('uni_unitaria', 10);
             $table->decimal('quantidade', $precison = 8, $scale = 2);
             $table->decimal('valor', $precison = 8, $scale = 2);
+            $table->unsignedBigInteger('fornecedor_id');
+            $table->foreign('fornecedor_id')->references('id')->on('fornecedores');
             $table->timestamps();
         });
     }

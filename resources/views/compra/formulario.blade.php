@@ -46,7 +46,7 @@
                             ['class'=>'form-control  btn-sm']) !!}
 
                         @if (Route::is('compra.show'))
-                            {!! Form::model($compra, ['method' => 'PATCH', 'url' => route('compra.update', $compra->id)]) !!}
+                            {!! Form::model($compra, ['method' => 'POST', 'url' => route('compra.update', $compra->id)]) !!}
                         @else
                             {!! Form::open(['method' => 'POST', 'url' => route('compra.store')]) !!}
                         @endif
@@ -65,13 +65,11 @@
                             'placeholder' => 'Data da Compra',
                             'required',
                         ]) !!}
-                        {!! Form::label('uni_unitaria', 'Unidade Unitaria') !!}
-                        {!! Form::input('text', 'uni_unitaria', null, [
-                            'class' => 'form-control
-                                                                                            mb-3',
-                            'placeholder' => 'Unidade Unitaria',
-                            'required',
-                        ]) !!}
+
+
+{!! Form::label('uni_unitaria', 'Unidade:') !!}
+{!! Form::select('uni_unitaria', ['kilo' => 'KG','tonelada' => 'TO', 'litro' => 'LT', 'metro' => 'M',  'unidade' => 'UN', 'pacote' =>'PT', 'maquina' => 'MQ', 'mquadrado' => 'M2', 'mcubico' => 'M3'], null, ['class' => 'form-control', 'placeholder' => 'Selecione uma unidade unitaria', 'required']) !!}
+
                         {!! Form::label('quantidade', 'Quantidade') !!}
                         {!! Form::input('text', 'quantidade', null, [
                             'class' => 'form-control',

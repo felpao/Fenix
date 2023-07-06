@@ -19,9 +19,8 @@ class Insumo extends Model
         'uni_unitaria',
         'quantidade',
         'valor',
-
-
     ];
+
 
 
 

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Compras;
-use App\Models\Desccompra;
 use App\Models\Desccompras;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
@@ -13,21 +12,23 @@ class DesccomprasController extends Controller
 {
 
     public function index(){
-        $desccompras = Desccompras::paginate(25);
+        $desccompras = Desccompras::with('compras')->paginate(25);
+
         Paginator::useBootstrap();
         return view('desccompras.lista', compact('desccompras'));
     }
 
 
     public function create(){
+        $compras = Compras::select('nome', 'id')->pluck('nome', 'id');
+        // $compra = Compras::get();
 
-        $compra = Compras::get();
-
-        return view('desccompras.formulario', compact('compra'));
+        return view('desccompras.formulario', compact('compras'));
 
     }
 
     public function store(Request $request,Desccompras $desccompra){
+
 
 
         $desccompra = new Desccompras();
@@ -40,7 +41,7 @@ class DesccomprasController extends Controller
             $msg = 'Deu erro!';
 
         }
-        return Redirect::to('/desccompra')->with($tipo,$msg);
+        return Redirect::to('/desccompras')->with($tipo,$msg);
     }
 
     public function update(Request $request, $desccompra_id){
@@ -51,12 +52,13 @@ class DesccomprasController extends Controller
         }else{
             $request->session()->flash('mensagem_erro',"Deu erro!");
         }
-        return Redirect::to('desccompra/'.$desccompra->id);
+        return Redirect::to('desccompras/');
     }
 
     public function show($id){
-        $desccompra = Desccompras::findOrFail($id);
-        return view('desccompra.formulario', compact('desccompra'));
+        $compras = Compras::select('nome', 'id')->pluck('nome', 'id');
+        $desccompras = Desccompras::findOrFail($id);
+        return view('desccompras.formulario', compact('desccompras','compras'));
 
     }
 
@@ -65,7 +67,7 @@ class DesccomprasController extends Controller
         $desccompra->delete();
         $request->session()->flash('mensagem_sucesso',
             'Desccompra removido com sucesso');
-        return Redirect::to('desccompra');
+        return Redirect::to('desccompras');
 
     }
 

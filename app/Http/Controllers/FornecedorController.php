@@ -63,7 +63,6 @@ class FornecedorController extends Controller
         return Redirect::to('fornecedor');
 
     }
-
     public function showReport(){
         $fornecedores = Fornecedor::get();
         $imagem = public_path('uploads\fornecedores\abdner.png');

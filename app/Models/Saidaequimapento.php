@@ -15,13 +15,11 @@ class Saidaequimapento extends Model
 
     protected $fillable = [
         'data_pedido',
-        'quantidade',
         'equipamento_id',
     ];
 
-    public function equipamentos(){
-        return $this->belongsTo(Equipamentos::class,'id');
+    public function equipamento(){
+        return $this->belongsTo(Equipamento::class,'equipamento_id','id');
     }
-
 
 }

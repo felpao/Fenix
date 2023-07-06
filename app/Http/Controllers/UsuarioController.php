@@ -46,7 +46,7 @@ class UsuarioController extends Controller
         }else{
             $request->session()->flash('mensagem_erro',"Deu erro!");
         }
-        return Redirect::to('usuario/'.$usuario->id);
+        return Redirect::to('usuario/');
     }
 
     public function show($id){

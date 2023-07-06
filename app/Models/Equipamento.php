@@ -17,8 +17,6 @@ class Equipamento extends Model
         'nome',
         'descricao',
         'quantidade',
-
-
     ];
 
 

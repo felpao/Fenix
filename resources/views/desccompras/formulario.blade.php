@@ -28,19 +28,19 @@
                             {!! Form::open(['method' => 'POST', 'url' => route('desccompras.store')]) !!}
                         @endif
                         {!! Form::label('desc_ped', 'DescPed') !!}
-                        {!! Form::input('text', 'nome', null, [
+                        {!! Form::input('text', 'desc_ped', null, [
                             'class' => 'form-control
                                                                                             mb-3',
                             'placeholder' => 'Descrição do Pedido',
                             'required',
                         ]) !!}
                         {!! Form::label('compra_id', 'Compras') !!}
-                        {!! Form::select('compra_id', $compra, null, [
-                            'class' => 'form-control',
-                            'placeholder' => 'Selecione uma
-                                                 Compra',
-                            'required',
-                        ]) !!}
+
+                        {!!
+                            Form::select('compra_id',$compras,null,['class' => 'form-control','placeholder'=>'Selecione uma
+                                                 Compra','required'])
+                            !!}
+
                         {!! Form::submit('Salvar', ['class' => 'float-end btn btn-primary mt-3']) !!}
                         {!! Form::close() !!}
                     </div>

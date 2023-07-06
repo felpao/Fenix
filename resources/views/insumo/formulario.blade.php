@@ -38,8 +38,9 @@
                         ]) !!}
                         {!! Form::label('descricao', 'Descricao') !!}
                         {!! Form::input('text', 'descricao', null, ['class' => 'form-control', 'placeholder' => 'Descricao', 'required']) !!}
-                        {!! Form::label('uni_unitaria', 'Uni_unitaria') !!}
-                        {!! Form::input('text', 'uni_unitaria', null, ['class' => 'form-control', 'placeholder' => 'Uni_unitaria', 'required']) !!}
+
+                        {!! Form::label('unidade', 'Unidade:') !!}
+                        {!! Form::select('uni_unitaria', ['kilo' => 'KG','tonelada' => 'TO', 'litro' => 'LT', 'metro' => 'M',  'unidade' => 'UN', 'pacote' =>'PT', 'maquina' => 'MQ', 'mquadrado' => 'M2', 'mcubico' => 'M3'], null, ['class' => 'form-control', 'placeholder' => 'Selecione uma unidade unitaria', 'required']) !!}
                         {!! Form::label('quantidade', 'Quantidade') !!}
                         {!! Form::input('text', 'quantidade', null, ['class' => 'form-control', 'placeholder' => 'Quantidade', 'required']) !!}
                         {!! Form::label('valor', 'Valor') !!}

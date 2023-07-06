@@ -35,7 +35,7 @@
                             'placeholder' => 'Data do Pedido',
                             'required']) !!}
                         {!! Form::label('quantidade', 'Quantidade') !!}
-                        {!! Form::input('text', 'qunatidade', null, ['class' => 'form-control', 'placeholder' => 'Quantidade', 'required']) !!}
+                        {!! Form::input('number', 'quantidade', null, ['class' => 'form-control', 'placeholder' => 'Quantidade', 'required']) !!}
                         {!! Form::label('equipamento_id','Equipamento') !!}
                         {!!
                         Form::select('equipamento_id',$equipamentos,null,['class' => 'form-control','placeholder'=>'Selecione um

@@ -17,6 +17,8 @@ return new class extends Migration
                 $table->string('nome', 50);
                 $table->string('email', 150);
                 $table->string('setor', 50);
+                $table->unsignedBigInteger('setor_id');
+                $table->foreign('setor_id')->references('id')->on('setor');
                 $table->timestamps();
             });
         }

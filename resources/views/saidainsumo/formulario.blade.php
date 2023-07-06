@@ -27,27 +27,28 @@
                         @else
                             {!! Form::open(['method' => 'POST', 'url' => route('saidainsumo.store')]) !!}
                         @endif
-                        {!! Form::label('data','Data Aquisição') !!}
-                         {!!
-                            Form::input('date','data',null,['class'=>'form-control','placeholder'=>'Data','required'])
-                        !!}
+                        {!! Form::label('quantidade', 'Quantidade') !!}
+                        {!! Form::input('number', 'quantidade', null, ['class' => 'form-control', 'placeholder' => 'Quantidade', 'required']) !!}
                         {!! Form::label('desc_pedido', 'Descrição do Pedido') !!}
                         {!! Form::input('text', 'desc_pedido', null, [
-                            'class' => 'form-control
-                                                                    mb-3',
+                            'class' => 'form-control mb-3',
                             'placeholder' => 'Descrição do Pedido',
                             'required',
                             'maxlenght' => 50,
                         ]) !!}
-                        {!! Form::label('data_pedido','Data Pedido') !!}
-                        {!!
-                        Form::input('date','data',null,['class'=>'form-control','placeholder'=>'Data do Pedido','required'])
-                        !!}
-                        {!! Form::label('insumo_id','Insumos') !!}
-                        {!!
-                        Form::select('insumo_id',$insumos,null,['class' => 'form-control','placeholder'=>'Selecione um
-                        insumo','required'])
-                        !!}
+                        {!! Form::label('data_pedido', 'Data Pedido') !!}
+                        {!! Form::input('date', 'data_pedido', null, [
+                            'class' => 'form-control',
+                            'placeholder' => 'Data do Pedido',
+                            'required',
+                        ]) !!}
+                        {!! Form::label('insumo_id', 'Insumos') !!}
+                        {!! Form::select('insumo_id', $insumos, null, [
+                            'class' => 'form-control',
+                            'placeholder' => 'Selecione um
+                                                insumo',
+                            'required',
+                        ]) !!}
                         {!! Form::submit('Salvar', ['class' => 'float-end btn btn-primary mt-3']) !!}
                         {!! Form::close() !!}
                     </div>

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Ramsey\Uuid\Uuid;
+use App\Models\Compras;
 
 class Desccompras extends Model
 {
@@ -16,11 +17,11 @@ class Desccompras extends Model
     protected $fillable = [
         'desc_ped',
         'compra_id'
-
     ];
     public function compras(){
-        return $this->belongsTo(compras::class,'id');
+        return $this->belongsTo(Compras::class,'id');
     }
+
 
 
 }

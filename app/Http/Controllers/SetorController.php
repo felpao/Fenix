@@ -46,7 +46,7 @@ class SetorController extends Controller
         }else{
             $request->session()->flash('mensagem_erro',"Deu erro!");
         }
-        return Redirect::to('setor/'.$setor->id);
+        return Redirect::to('setor/');
     }
 
     public function show($id){

@@ -43,10 +43,10 @@
                         {!! Form::input('text', 'titulo', null, ['class'=>'form-control','placeholder'=>'titulo', 'required', 'maxlenght'=>50, 'autofocus']) !!}
                         {!! Form::label('icone', 'Icone') !!}
                         {!! Form::file('icone',
-                        ['class'=>'form-control  btn-sm']) !!}}
+                        ['class'=>'form-control  btn-sm']) !!}
 
                         @if (Route::is('equipamento.show'))
-                            {!! Form::model($equipamento, ['method' => 'PATCH', 'url' => route('equipamento.update', $equipamento->id)]) !!}
+                            {!! Form::model($equipamento, ['method' => 'POST', 'url' => route('equipamento.update', $equipamento->id)]) !!}
                         @else
                             {!! Form::open(['method' => 'POST', 'url' => route('equipamento.store')]) !!}
                         @endif

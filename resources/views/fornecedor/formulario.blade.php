@@ -47,7 +47,7 @@
 
 
                         @if (Route::is('fornecedor.show'))
-                            {!! Form::model($fornecedor, ['method' => 'PATCH', 'url' => route('fornecedor.update', $fornecedor->id)]) !!}
+                            {!! Form::model($fornecedor, ['method' => 'POST', 'url' => route('fornecedor.update', $fornecedor->id)]) !!}
                         @else
                             {!! Form::open(['method' => 'POST', 'url' => route('fornecedor.store')]) !!}
                         @endif

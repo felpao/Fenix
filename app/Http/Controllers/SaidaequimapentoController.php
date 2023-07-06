@@ -13,15 +13,16 @@ class SaidaequimapentoController extends Controller
 
     public function index(){
 
-        $saidaequimapentos = Saidaequimapento::paginate(25);
+        $saidaequimapentos = Saidaequimapento::with('equipamento')->paginate(25);
         Paginator::useBootstrap();
+
+
         return view('saidaequipamento.lista', compact('saidaequimapentos'));
     }
 
 
     public function create(){
-
-        $equipamentos = Equipamento::get();
+        $equipamentos = Equipamento::select('nome', 'id')->pluck('nome', 'id');
 
         return view('saidaequipamento.formulario', compact('equipamentos'));
 
@@ -29,10 +30,20 @@ class SaidaequimapentoController extends Controller
 
     public function store(Request $request,Saidaequimapento $saidaequimapento){
 
-
         $saidaequimapento = new Saidaequimapento();
         $saidaequimapento->fill($request->all());
         if ($saidaequimapento->save()) {
+            //aqui salvou certo
+
+            $equipamento = Equipamento::where('id','=',$request['equipamento_id'])->first();
+
+            if($equipamento->quantidade != 0){
+
+                $quantidade = $equipamento->quantidade - $request['quantidade'];
+
+                $equipamento->update(['quantidade' => $quantidade]);
+            }
+
             $tipo = 'mensagem_sucesso';
             $msg = 'Equipamento Excluido !';
         } else {
@@ -44,19 +55,23 @@ class SaidaequimapentoController extends Controller
     }
 
     public function update(Request $request, $saidaequimapento_id){
+
         $saidaequimapento = Saidaequimapento::findOrFail($saidaequimapento_id);
         $saidaequimapento->fill($request->all());
         if ($saidaequimapento->save()){;
+            //aqui salvou certo
+
             $request->session()->flash('mensagem_sucesso',"Saidaequimapento alterado!");
         }else{
             $request->session()->flash('mensagem_erro',"Deu erro!");
         }
-        return Redirect::to('saidaequipamento/'.$saidaequimapento->id);
+        return Redirect::to('saidaequipamento/');
     }
 
     public function show($id){
+        $equipamentos = Equipamento::select('nome', 'id')->pluck('nome', 'id');
         $saidaequimapento = Saidaequimapento::findOrFail($id);
-        return view('saidaequipamento.formulario', compact('saidaequimapento'));
+        return view('saidaequipamento.formulario', compact('saidaequimapento','equipamentos'));
 
     }
 
