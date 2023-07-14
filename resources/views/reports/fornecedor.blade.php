@@ -21,12 +21,12 @@
         </tr>
         @forelse ($fornecedores as $fornecedor)
         <tr>
-            <td>{{ $fornecedores->id }}</td>
-            <td>{{ $fornecedores->nome }}</td>
-            <td>{{ $fornecedores->endereco }}</td>
-            <td>{{ $fornecedores->fone }}</td>
-            <td>{{ $fornecedores->email }}</td>
-            <td>{{ $fornecedores->descricao }}</td>
+            <td>{{ $fornecedor->id }}</td>
+            <td>{{ $fornecedor->nome }}</td>
+            <td>{{ $fornecedor->endereco }}</td>
+            <td>{{ $fornecedor->fone }}</td>
+            <td>{{ $fornecedor->email }}</td>
+            <td>{{ $fornecedor->descricao }}</td>
             <td><img src="{{ $logo }}" alt="">
           <img src="{{ public_path('/uploads/fornecedores/') }}" alt="">
         </td>

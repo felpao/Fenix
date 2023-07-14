@@ -85,9 +85,9 @@ class CompraController extends Controller
 
 
     return $pdf
-    ->download('relatorio.pdf');
+    //->download('relatorio.pdf');
     //->save(public_path('/arquivos/relatorio.pdf'));
-    //->stream('relatorio.pdf');
+    ->stream('relatorio.pdf');
 }
 
 }

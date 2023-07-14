@@ -19,18 +19,17 @@
         </tr>
         @forelse ($equipamentos as $equipamento)
         <tr>
-            <td>{{ $equipamentos->id }}</td>
-            <td>{{ $equipamentos->nome }}</td>
-            <td>{{ $equipamentos->descricao }}</td>
-            <td>{{ $equipamentos->quantidade }}</td>
-            <td><img src="{{ $logo }}" alt="">
-          <img src="{{ public_path('/uploads/equipamentos/') }}" alt="">
+            <td>{{ $equipamento->id }}</td>
+            <td>{{ $equipamento->nome }}</td>
+            <td>{{ $equipamento->descricao }}</td>
+            <td>{{ $equipamento->quantidade }}</td>
+
         </td>
         </tr>
 
         @empty
         <tr>
-            <td colspan="3">Nenhum tipo cadastrado</td>
+            <td colspan="3">Nenhum equipamento cadastrado</td>
         </tr>
         @endforelse
     </table>

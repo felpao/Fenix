@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Fornecedor;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Redirect;
@@ -72,7 +73,7 @@ class FornecedorController extends Controller
         $logo = 'data:image/' . $fornecedor . ';base64' . $base64;
 
         //$logo = base64_encode(file_get_contents(public_path('/uploads/fornecedores/wp8357470.jpg')));
-        $pdf = Pdf::loadView('reports.fornecedores', compact('fornecedores', 'logo'));
+        $pdf = Pdf::loadView('reports.fornecedor', compact('fornecedores', 'logo'));
 
         $pdf->setPaper('a4', 'landscape')
         ->setOptions(['dpi'=>150, 'defaultFont'=>'sans-serif'])
@@ -80,9 +81,9 @@ class FornecedorController extends Controller
 
 
         return $pdf
-        ->download('relatorio.pdf');
+        //->download('relatorio.pdf');
         //->save(public_path('/arquivos/relatorio.pdf'));
-        //->stream('relatorio.pdf');
+        ->stream('relatorio.pdf');
     }
 
 }

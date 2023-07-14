@@ -68,26 +68,33 @@ class EquipamentoController extends Controller
 
     }
 
-    public function showReport(){
-        $equipamentos = Equipamento::get();
-        $imagem = public_path('uploads\equipamentos\abdner.png');
-        $equipamento = pathinfo($imagem, PATHINFO_EXTENSION);
-        $data = file_get_contents($imagem);
-        $base64 = base64_encode($imagem);
-        $logo = 'data:image/' . $equipamentos . ';base64' . $base64;
+    public function showReport(Request $request)
+    {
 
-        //$logo = base64_encode(file_get_contents(public_path('/uploads/compras/wp8357470.jpg')));
-        $pdf = Pdf::loadView('reports.equipamentos', compact('equipamentos', 'logo'));
+        // Recupera os parâmetros de pesquisa do DataTables
+        $search = $request->input('search.value');
 
+        // Filtra os equipamentos no banco de dados com base nos parâmetros de pesquisa do DataTables
+        $equipamentos = Equipamento::where('nome', 'like', "%{$search}%")->get();
+
+        // Define o caminho para a imagem
+        //$imagem = public_path('uploads/equipamentos/abdner.png');
+
+        // Codifica a imagem em base64
+      //  $data = file_get_contents($imagem);
+       // $base64 = base64_encode($data);
+        //$logo = 'data:image/png;base64,' . $base64;
+
+        // Gera o relatório em PDF com os equipamentos filtrados e a imagem codificada em base64
+        $pdf = PDF::loadView('reports.equipamentos', compact('equipamentos'));
+
+        // Define as opções do PDF
         $pdf->setPaper('a4', 'landscape')
-        ->setOptions(['dpi'=>150, 'defaultFont'=>'sans-serif'])
-        ->setEncryption('123');
+            ->setOptions(['dpi' => 150, 'defaultFont' => 'sans-serif'])
+            ->setEncryption('123');
 
-
-        return $pdf
-        ->download('relatorio.pdf');
-        //->save(public_path('/arquivos/relatorio.pdf'));
-        //->stream('relatorio.pdf');
+        // Retorna o PDF gerado para o usuário
+        return $pdf->stream('relatorio.pdf');
     }
 
 }

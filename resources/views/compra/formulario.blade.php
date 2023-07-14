@@ -22,28 +22,27 @@
                                 {{ Session::get('menssagem_erro') }}
                             </div>
                         @endif
-                        @if(Route::is('compras.show'))
-                            {!! Form::model($compra,
-                                            ['method'=>'PATCH',
-                                            'files'=>'True',
-                                            'url'=>'compras/'.$compra->id]) !!}
+                        @if (Route::is('compras.show'))
+                            {!! Form::model($compra, ['method' => 'PATCH', 'files' => 'True', 'url' => 'compras/' . $compra->id]) !!}
                             <div class="text-center">
-                                <img
-                                src="{{ url('/') }}/uploads/compras/{{ $compra->icone }}"
-                                alt="{{ $compra->titulo }}"
-                                title="{{ $compra->titulo }}"
-                                class="img-thumbnail"
-                                width="150"/>
+                                <img src="{{ url('/') }}/uploads/compras/{{ $compra->icone }}"
+                                    alt="{{ $compra->titulo }}" title="{{ $compra->titulo }}" class="img-thumbnail"
+                                    width="150" />
                             </div>
                         @else
-                        {!! Form::open(['method'=>'POST','files'=>'True', 'url'=>'compra']) !!}
+                            {!! Form::open(['method' => 'POST', 'files' => 'True', 'url' => 'compra']) !!}
                         @endif
-                        {!! Form::open(['method'=>'POST', 'url'=>'compra']) !!}
-                            {!! Form::label('titulo', 'Titulo') !!}
-                            {!! Form::input('text', 'titulo', null, ['class'=>'form-control','placeholder'=>'titulo', 'required', 'maxlenght'=>50, 'autofocus']) !!}
-                            {!! Form::label('icone', 'Icone') !!}
-                            {!! Form::file('icone',
-                            ['class'=>'form-control  btn-sm']) !!}
+                        {!! Form::open(['method' => 'POST', 'url' => 'compra']) !!}
+                        {!! Form::label('titulo', 'Titulo') !!}
+                        {!! Form::input('text', 'titulo', null, [
+                            'class' => 'form-control',
+                            'placeholder' => 'titulo',
+                            'required',
+                            'maxlenght' => 50,
+                            'autofocus',
+                        ]) !!}
+                        {!! Form::label('icone', 'Icone') !!}
+                        {!! Form::file('icone', ['class' => 'form-control  btn-sm']) !!}
 
                         @if (Route::is('compra.show'))
                             {!! Form::model($compra, ['method' => 'POST', 'url' => route('compra.update', $compra->id)]) !!}
@@ -53,7 +52,7 @@
                         {!! Form::label('nome', 'Nome') !!}
                         {!! Form::input('text', 'nome', null, [
                             'class' => 'form-control
-                                                                    mb-3',
+                                                                                            mb-3',
                             'placeholder' => 'Nome',
                             'required',
                             'maxlenght' => 50,
@@ -67,17 +66,32 @@
                         ]) !!}
 
 
-{!! Form::label('uni_unitaria', 'Unidade:') !!}
-{!! Form::select('uni_unitaria', ['kilo' => 'KG','tonelada' => 'TO', 'litro' => 'LT', 'metro' => 'M',  'unidade' => 'UN', 'pacote' =>'PT', 'maquina' => 'MQ', 'mquadrado' => 'M2', 'mcubico' => 'M3'], null, ['class' => 'form-control', 'placeholder' => 'Selecione uma unidade unitaria', 'required']) !!}
+                        {!! Form::label('uni_unitaria', 'Unidade:') !!}
+                        {!! Form::select(
+                            'uni_unitaria',
+                            [
+                                'kilo' => 'KG',
+                                'tonelada' => 'TO',
+                                'litro' => 'LT',
+                                'metro' => 'M',
+                                'unidade' => 'UN',
+                                'pacote' => 'PT',
+                                'maquina' => 'MQ',
+                                'mquadrado' => 'M2',
+                                'mcubico' => 'M3',
+                            ],
+                            null,
+                            ['class' => 'form-control', 'placeholder' => 'Selecione uma unidade unitaria', 'required'],
+                        ) !!}
 
                         {!! Form::label('quantidade', 'Quantidade') !!}
-                        {!! Form::input('text', 'quantidade', null, [
+                        {!! Form::input('number', 'quantidade', null, [
                             'class' => 'form-control',
                             'placeholder' => 'Quantidade',
                             'required',
                         ]) !!}
                         {!! Form::label('valor', 'Valor') !!}
-                        {!! Form::input('text', 'valor', null, ['class' => 'form-control', 'placeholder' => 'Valor', 'required']) !!}
+                        {!! Form::input('number', 'valor', null, ['class' => 'form-control', 'placeholder' => 'Valor', 'required']) !!}
                         {!! Form::submit('Salvar', ['class' => 'float-end btn btn-primary mt-3']) !!}
                         {!! Form::close() !!}
                     </div>

@@ -62,7 +62,7 @@
                         {!! Form::label('descricao', 'Descrição') !!}
                         {!! Form::input('text', 'descricao', null, ['class' => 'form-control', 'placeholder' => 'Descrição', 'required']) !!}
                         {!! Form::label('quantidade', 'Quantidade') !!}
-                        {!! Form::input('text', 'quantidade', null, ['class' => 'form-control', 'placeholder' => 'Quantidade', 'required']) !!}
+                        {!! Form::input('number', 'quantidade', null, ['class' => 'form-control', 'placeholder' => 'Quantidade', 'required']) !!}
                         {!! Form::submit('Salvar', ['class' => 'float-end btn btn-primary mt-3']) !!}
                         {!! Form::close() !!}
                     </div>
