@@ -80,26 +80,36 @@
 <script type="text/javascript">
     $(document).ready(function() {
         var table = $('#myTable').DataTable({
-            language: {
-                url: "https://cdn.datatables.net/plug-ins/1.11.3/i18n/pt_br.json"
-            },
-            dom: 'frtiBp',
-            buttons: [
-                'copy', 'csv', 'excel', 'pdf'
-            ],
-            columnDefs: [
-                {
-                    "targets": [3], // índice da coluna que deseja ocultar
-                    "visible": false
-                }
-            ]
-        });
+    language: {
+        url: "https://cdn.datatables.net/plug-ins/1.11.3/i18n/pt_br.json"
+    },
+    dom: 'frtiBp',
+    buttons: [
+        'copy', 'csv', 'excel', 'pdf'
+    ],
+    columnDefs: [
+        {
+            orderable: false,
+            className: 'select-checkbox',
+            targets: 0
+        },
+        {
+            "targets": [3], // índice da coluna que deseja ocultar
+            "visible": false
+        }
+    ],
+    select: {
+        style: 'os',
+        selector: 'td:first-child'
+    },
+    order: [[1, 'asc']]
+});
     });
 </script>
 <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.0.1/css/buttons.dataTables.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.3.3/css/select.dataTables.min.css"/>
 
-<!-- Scripts do jQuery, DataTables e Buttons -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/2.0.1/js/dataTables.buttons.min.js"></script>
@@ -107,6 +117,7 @@
 <script src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.html5.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/pdfmake.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/vfs_fonts.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/select/1.3.3/js/dataTables.select.min.js"></script>
 <script>
     function confirmarExclusao(event, id) {
       event.preventDefault();

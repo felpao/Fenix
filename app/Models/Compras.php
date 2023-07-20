@@ -19,11 +19,13 @@ class Compras extends Model
         'uni_unitaria',
         'quantidade',
         'valor',
-
-
+        'nome_fornecedor',
 
     ];
-
+    public function fornecedor()
+    {
+        return $this->belongsTo(Fornecedor::class, 'fornecedor_id');
+    }
 
 
 }

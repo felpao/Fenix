@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Equipamento;
 use App\Models\Insumo;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Dotenv\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Redirect;
@@ -26,21 +27,32 @@ class EquipamentoController extends Controller
 
     }
 
-    public function store(Request $request,Equipamento $equipamento){
 
 
-        $equipamento = new Equipamento();
-        $equipamento->fill($request->all());
-        if ($equipamento->save()) {
-            $tipo = 'mensagem_sucesso';
-            $msg = 'Equipamento Excluido !';
-        } else {
-            $tipo = 'Mensagem erro!';
-            $msg = 'Deu erro!';
+public function store(Request $request, Equipamento $equipamento)
+{
+    $validator = Validator::make($request->all(), [
+        'quantidade' => 'required|numeric|min:0',
+    ]);
 
-        }
-        return Redirect::to('/equipamento')->with($tipo,$msg);
+    if ($validator->fails()) {
+        return Redirect::to('/equipamento')
+                    ->withErrors($validator)
+                    ->withInput();
     }
+
+    $equipamento = new Equipamento();
+    $equipamento->fill($request->all());
+    if ($equipamento->save()) {
+        $tipo = 'mensagem_sucesso';
+        $msg = 'Equipamento Excluido !';
+    } else {
+        $tipo = 'Mensagem erro!';
+        $msg = 'Deu erro!';
+    }
+    return Redirect::to('/equipamento')->with($tipo, $msg);
+}
+
 
     public function update(Request $request, $equipamento_id){
         $equipamento = Equipamento::findOrFail($equipamento_id);

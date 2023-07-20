@@ -8,6 +8,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
 
 class CompraController extends Controller
 {
@@ -24,21 +25,31 @@ class CompraController extends Controller
 
     }
 
-    public function store(Request $request,Compras $compra){
 
+    public function store(Request $request, Compras $compra)
+    {
+        $validator = Validator::make($request->all(), [
+            'quantidade' => 'required|numeric|min:0',
+        ]);
+
+        if ($validator->fails()) {
+            return Redirect::to('/compra')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
 
         $compra = new Compras();
         $compra->fill($request->all());
         if ($compra->save()) {
             $tipo = 'mensagem_sucesso';
-            $msg = 'Equipamento Excluido !';
+            $msg = 'compra Excluido !';
         } else {
             $tipo = 'Mensagem erro!';
             $msg = 'Deu erro!';
-
         }
-        return Redirect::to('/compra')->with($tipo,$msg);
+        return Redirect::to('/compra')->with($tipo, $msg);
     }
+
 
     public function update(Request $request, $compra_id){
         $compra = Compras::findOrFail($compra_id);

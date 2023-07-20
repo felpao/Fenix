@@ -92,6 +92,7 @@
                         ]) !!}
                         {!! Form::label('valor', 'Valor') !!}
                         {!! Form::input('number', 'valor', null, ['class' => 'form-control', 'placeholder' => 'Valor', 'required']) !!}
+
                         {!! Form::submit('Salvar', ['class' => 'float-end btn btn-primary mt-3']) !!}
                         {!! Form::close() !!}
                     </div>
